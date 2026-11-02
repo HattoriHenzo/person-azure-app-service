@@ -81,21 +81,22 @@
   - **Commit**: (no code changes; validation only, included with Step 3 commit)
 
 - **Step 5: Upgrade Java to 21 (intermediate)**
-  - **Status**: 🔘 Not Started
+  - **Status**: ✅ Completed
   - **Changes Made**:
+    - pom.xml: java.version 17 -> 21
   - **Review Code Changes**:
-    - Sufficiency:
-    - Necessity:
-      - Functional Behavior:
-      - Security Controls:
+    - Sufficiency: ✅ All required changes present
+    - Necessity: ✅ All changes necessary
+      - Functional Behavior: ✅ Preserved
+      - Security Controls: ✅ Preserved
   - **Verification**:
-    - Command:
-    - JDK:
-    - Build tool:
-    - Result:
-    - Notes:
-  - **Deferred Work**:
-  - **Commit**:
+    - Command: `mvnw.cmd clean test-compile -q`
+    - JDK: C:\Develop\java\21\bin
+    - Build tool: . (wrapper, Maven 3.9.16)
+    - Result: ✅ Compilation SUCCESS
+    - Notes: Test execution deferred to Step 6/8 per plan
+  - **Deferred Work**: None
+  - **Commit**: f4d1378 - Step 5: Upgrade Java to 21 (intermediate) - Compile: SUCCESS
 
 - **Step 6: Upgrade to Spring Boot 4.1.2 + Java 25 (final targets)**
   - **Status**: 🔘 Not Started
