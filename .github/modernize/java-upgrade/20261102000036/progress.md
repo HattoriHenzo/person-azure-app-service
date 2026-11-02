@@ -43,38 +43,42 @@
   - **Commit**: (no code changes; not committed separately)
 
 - **Step 3: Upgrade to Spring Boot 3.5.16 + Java 17 (intermediate)**
-  - **Status**: 🔘 Not Started
+  - **Status**: ✅ Completed
   - **Changes Made**:
+    - pom.xml: spring-boot-starter-parent 2.7.3 -> 3.5.16
+    - pom.xml: java.version 11 -> 17
+    - Person.java: javax.persistence -> jakarta.persistence
   - **Review Code Changes**:
-    - Sufficiency:
-    - Necessity:
-      - Functional Behavior:
-      - Security Controls:
+    - Sufficiency: ✅ All required changes present
+    - Necessity: ✅ All changes necessary
+      - Functional Behavior: ✅ Preserved
+      - Security Controls: ✅ Preserved
   - **Verification**:
-    - Command:
-    - JDK:
-    - Build tool:
-    - Result:
-    - Notes:
-  - **Deferred Work**:
-  - **Commit**:
+    - Command: `mvnw.cmd clean test-compile -q`
+    - JDK: C:\Develop\java\17\bin
+    - Build tool: . (wrapper, Maven 3.9.16)
+    - Result: ✅ Compilation SUCCESS
+    - Notes: Test execution performed in Step 4
+  - **Deferred Work**: None
+  - **Commit**: 154b5dc - Step 3: Upgrade to Spring Boot 3.5.16 + Java 17 - Compile: SUCCESS
 
 - **Step 4: Validate Spring Boot 3.5.16 Runtime Behavior**
-  - **Status**: 🔘 Not Started
+  - **Status**: ✅ Completed
   - **Changes Made**:
+    - None required - no issues surfaced
   - **Review Code Changes**:
-    - Sufficiency:
-    - Necessity:
-      - Functional Behavior:
-      - Security Controls:
+    - Sufficiency: ✅ No changes needed
+    - Necessity: ✅ N/A
+      - Functional Behavior: ✅ Preserved
+      - Security Controls: ✅ Preserved
   - **Verification**:
-    - Command:
-    - JDK:
-    - Build tool:
-    - Result:
-    - Notes:
-  - **Deferred Work**:
-  - **Commit**:
+    - Command: `mvnw.cmd clean test -q`
+    - JDK: C:\Develop\java\17\bin
+    - Build tool: . (wrapper, Maven 3.9.16)
+    - Result: ✅ Tests 26/26 passed (100%) - matches baseline
+    - Notes: `LocalServerPort` import (org.springframework.boot.test.web.server.LocalServerPort) resolved correctly in Spring Boot 3.5.16; Hibernate 6.6.53 H2Dialect warning only (non-blocking deprecation notice)
+  - **Deferred Work**: None
+  - **Commit**: (no code changes; validation only, included with Step 3 commit)
 
 - **Step 5: Upgrade Java to 21 (intermediate)**
   - **Status**: 🔘 Not Started
