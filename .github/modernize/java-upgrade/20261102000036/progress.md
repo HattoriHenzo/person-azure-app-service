@@ -99,38 +99,42 @@
   - **Commit**: f4d1378 - Step 5: Upgrade Java to 21 (intermediate) - Compile: SUCCESS
 
 - **Step 6: Upgrade to Spring Boot 4.1.2 + Java 25 (final targets)**
-  - **Status**: 🔘 Not Started
+  - **Status**: ✅ Completed
   - **Changes Made**:
+    - pom.xml: spring-boot-starter-parent 3.5.16 -> 4.1.2; java.version 21 -> 25
+    - pom.xml: added spring-boot-starter-webmvc-test, spring-boot-starter-data-jpa-test; replaced starter-webflux with starter-webflux-test (test scope) - SB4 modularized test support
+    - Fixed SB4 breaking changes: Jackson 3 ObjectMapper import, @MockBean->@MockitoBean, @WebMvcTest/@DataJpaTest package moves, added @AutoConfigureWebTestClient
   - **Review Code Changes**:
-    - Sufficiency:
-    - Necessity:
-      - Functional Behavior:
-      - Security Controls:
+    - Sufficiency: ✅ All required changes present (verified via compile + full test run)
+    - Necessity: ✅ All changes necessary (each driven by a genuine SB4 compile/runtime break)
+      - Functional Behavior: ✅ Preserved (26/26 tests pass, same as baseline)
+      - Security Controls: ✅ Preserved (no security-related code)
   - **Verification**:
-    - Command:
-    - JDK:
-    - Build tool:
-    - Result:
-    - Notes:
-  - **Deferred Work**:
-  - **Commit**:
+    - Command: `mvnw.cmd clean test-compile -q` then `mvnw.cmd clean test -q`
+    - JDK: C:\Develop\java\25\bin
+    - Build tool: . (wrapper, Maven 3.9.16)
+    - Result: ✅ Compilation SUCCESS; Tests 26/26 passed (100%) - matches baseline
+    - Notes: Spring Boot 4.x modularized test autoconfiguration (WebMvcTest/DataJpaTest/WebTestClient moved to dedicated starter-test artifacts); Jackson 3 is now the SB4 default JSON library
+  - **Deferred Work**: None
+  - **Commit**: 52c8ab0 - Step 6: Upgrade to Spring Boot 4.1.2 + Java 25 - Compile: SUCCESS, Tests: 26/26 passed
 
 - **Step 7: CVE Validation & Fix**
-  - **Status**: 🔘 Not Started
+  - **Status**: ✅ Completed
   - **Changes Made**:
+    - None required - no CVEs found
   - **Review Code Changes**:
-    - Sufficiency:
-    - Necessity:
-      - Functional Behavior:
-      - Security Controls:
+    - Sufficiency: ✅ N/A (no changes needed)
+    - Necessity: ✅ N/A
+      - Functional Behavior: ✅ Preserved
+      - Security Controls: ✅ Preserved
   - **Verification**:
-    - Command:
-    - JDK:
-    - Build tool:
-    - Result:
-    - Notes:
-  - **Deferred Work**:
-  - **Commit**:
+    - Command: `mvnw.cmd dependency:list -DexcludeTransitive=true` + `#appmod-validate-cves-for-java`
+    - JDK: C:\Develop\java\25\bin
+    - Build tool: . (wrapper, Maven 3.9.16)
+    - Result: ✅ No known CVEs found for any of the 8 direct dependencies
+    - Notes: Scanned spring-boot-starter-web, spring-boot-starter-data-jpa, lombok, h2, and all test starters (4.1.2 managed versions)
+  - **Deferred Work**: None
+  - **Commit**: (no code changes; scan only)
 
 - **Step 8: Final Validation**
   - **Status**: 🔘 Not Started
