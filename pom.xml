@@ -8,8 +8,8 @@
 		<version>4.1.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.javathinked.application.spring</groupId>
-	<artifactId>application-spring</artifactId>
+	<groupId>com.practice.application.spring</groupId>
+	<artifactId>person-manager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Person Manager</name>
 	<description>Demo project person manager</description>
@@ -63,6 +63,33 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.microsoft.azure</groupId>
+				<artifactId>azure-webapp-maven-plugin</artifactId>
+				<version>2.14.1</version>
+				<configuration>
+					<schemaVersion>v2</schemaVersion>
+					<resourceGroup>rg-person-manager</resourceGroup>
+					<appName>person-manager-app</appName>
+					<pricingTier>B1</pricingTier>
+					<region>westeurope</region>
+					<runtime>
+						<os>Linux</os>
+						<javaVersion>Java 21</javaVersion>
+						<webContainer>Java SE</webContainer>
+					</runtime>
+					<deployment>
+						<resources>
+							<resource>
+								<directory>${project.basedir}/target</directory>
+								<includes>
+									<include>*.jar</include>
+								</includes>
+							</resource>
+						</resources>
+					</deployment>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
